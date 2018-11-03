@@ -11,4 +11,4 @@ eureka:
 #服务的名称
 spring:
   application:
-    name: Falcon-product-service
+    name: product-service
