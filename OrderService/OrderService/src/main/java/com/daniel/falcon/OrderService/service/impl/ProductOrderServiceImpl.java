@@ -5,10 +5,9 @@ import com.daniel.falcon.OrderService.service.ProductOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import sun.net.www.URLConnection;
-import sun.net.www.http.HttpClient;
 
 import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -21,15 +20,16 @@ public class ProductOrderServiceImpl implements ProductOrderService {
     @Override
     public ProductOrder save(int userId, int productId) {
 
-        Object obj = restTemplate.getForObject(
-                "http://product-service/api/v1/product/find?id=" + productId, Object.class);
-
-        System.out.println(obj);
+        Map<String,Object> productMap = restTemplate.getForObject(
+                String.format("http://product-service/api/v1/product/find?id=%s", productId),
+                Map.class);
 
         ProductOrder productOrder = new ProductOrder();
         productOrder.setCreateTime(new Date());
         productOrder.setUserId(userId);
         productOrder.setTradeNo(UUID.randomUUID().toString());
+        productOrder.setProductName(productMap.get("name").toString());
+        productOrder.setPrice(Integer.parseInt(productMap.get("price").toString()));
 
         return productOrder;
     }
