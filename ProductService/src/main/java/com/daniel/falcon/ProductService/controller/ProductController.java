@@ -38,7 +38,7 @@ public class ProductController {
      */
     @RequestMapping("find")
     public Object findById(@RequestParam("id") int id){
-        //sleep(1);
+        //sleep(2);
         Product product = productService.findById(id);
         Product result = new Product();
         BeanUtils.copyProperties(product, result);
