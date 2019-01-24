@@ -18,4 +18,11 @@ public class firstController {
         map.put("defaultView", "first");
         return map;
     }
+
+//    @RequestMapping(method = RequestMethod.GET, value = "/api/test")
+//    public ModelAndView getFirstMessage() {
+//        Map<String, String> map = new HashMap<>();
+//        map.put("defaultView", "first");
+//        return new ModelAndView("defaultView", "lun", map);
+//    }
 }

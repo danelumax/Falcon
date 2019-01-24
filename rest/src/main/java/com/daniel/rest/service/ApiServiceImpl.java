@@ -8,7 +8,10 @@ import com.daniel.rest.model.ApiName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service  //要加这个注解 表示 为service层，才会自动扫描关生成beans
+@Transactional(rollbackOn = Exception.class) //If the annotation is added on class, all methods in the class will use transaction
 public class ApiServiceImpl implements ApiService {
     
     @Autowired  //加这个注解会自动new
